@@ -9,6 +9,40 @@ void kiemTraSoNguyen()
 	printf("\n");
 }
 
+void sapXepPhanTuMang()
+{
+	int integerArray[100];//integerArray
+	int tmp; //temperry
+	int length;
+	printf("Nhap kich thuoc mang");
+	scanf_s("%d", &length);
+	printf("Nhap du lieu cho mang %d phan tu\n", length);
+	//int length = sizeof(mangSoNguyen) / sizeof(int);
+	for (int i = 0; i < length;  i++)
+	{
+		printf("mang[%d] = ", i);
+		scanf_s("%d", &integerArray[i]);
+		printf("Xuat du lieu cho mang %d phan tu\n", length);
+	}
+	for (int i = 0; i < length -1 ;  i++)
+	{
+		if (integerArray[i] > integerArray[i + 1])
+		{
+			tmp = integerArray[i];
+			integerArray[i] = integerArray[i + 1];
+			integerArray[i + 1] = tmp;
+			i = -1;
+
+		}
+	}
+
+	printf("Xuat du lieu cho mang %d phan tu\n");
+	for (int i = 0; i < length;  i++)
+	{
+		printf("mang[%d] = %d\n", i, integerArray[i]);
+	}
+}
+
 void lapChucNang(int chonChucNang)
 {
 	int tiepTuc = 1;
@@ -20,7 +54,7 @@ void lapChucNang(int chonChucNang)
 			kiemTraSoNguyen();
 			break;
 		case 2:
-			// ham goi chuc nang 2
+			sapXepPhanTuMang();
 			break;
 		case 3:
 			// ham goi chuc nang 3
@@ -30,7 +64,7 @@ void lapChucNang(int chonChucNang)
 			break;
 		}
 		printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
-		scanf("%d", &tiepTuc);
+		scanf_s("%d", &tiepTuc);
 		system("cls");
 	}
 
@@ -44,7 +78,7 @@ int main()
 		printf("\n");
 		printf("1. Kiem Tra So Nguyen");
 		printf("\n");
-		printf("2. TEN chuc nang 2");
+		printf("2. Sap xep mang du lieu");
 		printf("\n");
 		printf("3. TEN chuc nang 3");
 		printf("\n");
