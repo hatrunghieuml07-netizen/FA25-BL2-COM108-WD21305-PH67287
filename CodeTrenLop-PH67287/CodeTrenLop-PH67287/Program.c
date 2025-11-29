@@ -29,7 +29,6 @@ void lapChucNang(int chonChucNang)
 			printf("Chon sai. Chuc nang hop le [0-3]");
 			break;
 		}
-
 		printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
 		scanf("%d", &tiepTuc);
 		system("cls");
