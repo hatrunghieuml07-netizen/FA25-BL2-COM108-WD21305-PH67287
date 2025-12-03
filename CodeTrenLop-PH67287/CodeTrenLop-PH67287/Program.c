@@ -45,6 +45,14 @@ void sapXepPhanTuMang()
 
 void demoMang2Chieu()
 {
+	//strring - string.h
+	char mangKyTu[10] = { "ANH"};
+	for (int i = 0; i < 3; i++)
+	{
+		scanf_s(" %c", &mangKyTu);
+	}
+	puts(mangKyTu);
+
 	int array[2][3];
 	for (int i = 0; i < 2; i++)
 	{
