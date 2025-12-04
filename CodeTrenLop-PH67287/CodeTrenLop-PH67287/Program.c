@@ -75,6 +75,46 @@ void demoMang2Chieu()
 	}
 }
 
+void demoString()
+{
+	//string
+	char mangKyTu[50] = "Nam";
+	while (getchar() != '\n');
+
+	printf("Nhap ten cua ban: ");
+	//su dung "fgets"thay cho ham "gets" (C thuan)
+	fgets(mangKyTu, sizeof(mangKyTu), stdin);
+	// Xuat du lieu dung %s - khong in them dau xuong dong
+	printf("%s", mangKyTu);
+	printf("\n");
+	//puts(mangKyTu
+	printf("%d", strlen(mangKyTu) - 1);
+	printf("\n");
+	printf("%d", strcmp("A", "B"));
+	printf("\n");
+	char str[5] = "ABC";
+	printf("%s", _strrev(str));
+	printf("\n");
+
+	printf("%s", _strlwr(str));
+	printf("\n");
+
+	printf("%s", _strupr(str));
+	printf("\n");
+	if (strstr("ABC", "D") != NULL)
+	{
+		printf(strstr("ABC", "D"));
+	}
+	else
+	{
+		printf("NOT found");
+	}
+	printf(strstr("ABC", "D"));
+	printf("\n");
+
+}
+
+
 void lapChucNang(int chonChucNang)
 {
 	int tiepTuc = 1;
