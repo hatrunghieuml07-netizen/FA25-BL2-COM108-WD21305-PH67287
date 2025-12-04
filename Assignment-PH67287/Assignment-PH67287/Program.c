@@ -20,14 +20,16 @@ void kiemTraSoNguyen()
 	printf("So %d la so nguyen.\n", x);
 
 	//kiem tra so nguyen to
-	int i, laNguyenTo = 1;  // giả sử là số nguyên tố
+	int i, laNguyenTo = 1;  
 
 	if (x < 2)
-		laNguyenTo = 0;     // <2 không phải số nguyên tố
+		laNguyenTo = 0;    
 	else {
-		for (i = 2; i <= x - 1; i++) {
-			if (x % i == 0) {
-				laNguyenTo = 0; // tìm thấy số chia hết
+		for (i = 2; i <= x - 1; i++) 
+		{
+			if (x % i == 0) 
+			{
+				laNguyenTo = 0; 
 				break;
 			}
 		}
@@ -38,9 +40,8 @@ void kiemTraSoNguyen()
 	else
 		printf("So %d khong phai la so nguyen to.\n", x);
 
-	// 3. Kiểm tra số chính phương
-	int can = sqrt(x);     // lấy căn bậc 2
-
+	// kiem tra so chinh phuong
+	int can = sqrt(x);     
 	if (can * can == x)
 		printf("So %d la so chinh phuong.\n", x);
 	else
@@ -60,17 +61,14 @@ void timUocSoChungVaBoiSoChungNhoNhat2So()
 	printf("Nhap so nguyen y:\n ");
 	scanf_s("%d", &y);
 
-	// ==== Tìm USCLN (dùng phương pháp trừ) ====
-	int a = x, b = y;  // sao chép giá trị để tính
+	int a = x, b = y;  
 	while (a != b) {
 		if (a > b)
 			a = a - b;
 		else
 			b = b - a;
 	}
-	int uscln = a;  // lúc này a = b
-
-	// Tìm BSCNN 
+	int uscln = a; 
 	int bscnn = (x * y) / uscln;
 
 	printf("Uoc so chung lon nhat (USCLN) = %d\n", uscln);
@@ -91,37 +89,30 @@ void tinhTienChoQuanKaraoke()
 	printf("Nhap gio ket thuc (12-23):\n ");
 	scanf_s("%d", &ketThuc);
 
-	// Kiểm tra hợp lệ
 	if (batDau < 12 || batDau > 23 || ketThuc < 12 || ketThuc > 23 || ketThuc <= batDau)
 	{
 		printf("Gio nhap khong hop le!\n");
 
 	}
-
-	// Tính số giờ
 	gio = ketThuc - batDau;
-
-	// Tính tiền
-	tien = 0;
+    tien = 0;
 
 	if (gio <= 3) {
-		// 3 giờ đầu
+		// 3 gio dau
 		tien = gio * 150000;
 	}
 	else {
-		// 3 giờ đầu
+		// 3 gio dau
 		tien = 3 * 150000;
 
-		// Các giờ sau giảm 30%
+		// cac gio sau giam 30%
 		tien = tien + (gio - 3) * (150000 * 0.7);
 	}
 
-	// Giảm thêm 10% nếu bắt đầu từ 14h đến 17h
+	// giam 10% tu 14 den 17h
 	if (batDau >= 14 && batDau <= 17) {
 		tien = tien * 0.9;
 	}
-
-	// Xuất kết quả
 	printf("So gio su dung: %d\n", gio);
 	printf("Tong tien: %.0f VND\n", tien);
 }
@@ -133,11 +124,10 @@ void tinhTienDien()
 
 	system("cls");
 	printf("Tinh tien dien\n");
-	// Nhập số kWh
+	// nguoi dung nhap
 	printf("Nhap so kWh su dung:\n ");
 	scanf_s("%d", &kwh);
 
-	// Tính tiền theo từng bậc
 	if (kwh <= 50)
 	{
 		tien = kwh * 1678;
@@ -163,7 +153,6 @@ void tinhTienDien()
 		tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (kwh - 400) * 2927;
 	}
 
-	// Xuất kết quả
 	printf("Tien dien phai tra: %.0f VND\n", tien);
 }
 
@@ -220,32 +209,24 @@ void  chucNangTinhLaiSuat()
 
 void chuongTrinhMuaXe()
 {
-	double giaXe = 500000000; // 500 triệu VNĐ
+	double giaXe = 500000000; // 500 trieu
 	double phanTramVay;
 	double tienVay, tienTraTruoc, tienTraHangThang;
 	int namVay = 24;
 	int soThang = namVay * 12;
-	double laiSuatNam = 0.072; // 7.2%/năm
+	double laiSuatNam = 0.072; // 7.2%
 	double laiSuatThang = laiSuatNam / 12; // 0.006/tháng
 	int chon;
 
 
 	system("cls");
-	// Nhập % vay tối đa
 	printf("Chuong trinh vay tien mua xe\n");
 	printf("Nhap vao so phan tram vay toi da (VD: 80): ");
 	scanf_s("%lf", &phanTramVay);
 
-	// Tính số tiền vay
 	tienVay = giaXe * (phanTramVay / 100.0);
-
-	// Tính tiền trả trước
 	tienTraTruoc = giaXe - tienVay;
-
-	// Tính tiền phải trả hàng tháng (lãi suất đơn)
 	tienTraHangThang = (tienVay * (1 + laiSuatThang * soThang)) / soThang;
-
-	// Hiển thị kết quả
 	printf("\nTien tra truoc: %.0lf VND\n", tienTraTruoc);
 	printf("Tien tra hang thang: %.0lf VND\n", tienTraHangThang);
 	printf("Tong tien phai tra sau %d nam: %.0lf VND\n", namVay, tienTraHangThang * soThang + tienTraTruoc);
@@ -260,38 +241,30 @@ void chuongTrinhTroChoi()
 
 
 	system("cls");
-	// Nhập 2 số từ người chơi
+	// nguoi dung nhap
 	printf("FPOLY-LOTT\n");
 	printf("Nhap vao 2 so tu 01 den 15:\n");
 	for (int i = 0; i < 2; i++) 
 	{
 		printf("So thu %d: ", i + 1);
 		scanf_s("%d", &soNguoiChon[i]);
-		// Kiểm tra số hợp lệ
 	if (soNguoiChon[i] < 1 || soNguoiChon[i] > 15) 
 	{
 		printf("So khong hop le! Vui long nhap tu 1 den 15.\n");
-		i--; // nhập lại
+		i--;
 	}
 	}
-
-	// Khởi tạo bộ sinh số ngẫu nhiên
 	srand(time(NULL));
-	// Sinh 2 số ngẫu nhiên từ 1 đến 15
 	soMayTinh[0] = rand() % 15 + 1;
 	do {
 		soMayTinh[1] = rand() % 15 + 1;
-	} while (soMayTinh[1] == soMayTinh[0]); // đảm bảo 2 số khác nhau
-
-	// Kiểm tra số trúng
+	} while (soMayTinh[1] == soMayTinh[0]); 
 	for (int i = 0; i < 2; i++) {
 		if (soNguoiChon[i] == soMayTinh[0] || soNguoiChon[i] == soMayTinh[1]) {
 			trung++;
 		}
 	}
-
-	// Hiển thị kết quả
-	printf("\nSo may tinh: %02d %02d\n", soMayTinh[0], soMayTinh[1]);
+	printf("\nSo trung thuong: %02d %02d\n", soMayTinh[0], soMayTinh[1]);
 
 	if (trung == 0) {
 		printf("Chuc ban may man lan sau!\n");
@@ -316,7 +289,7 @@ void xayDungChuongTrinhToanPhanSo()
 	int chon;
 
 	system("cls");
-	// Nhập phân số thứ nhất
+	// phan so 1
 	printf("Chuong trinh toan phan so\n");
 	printf("Nhap phan so thu nhat:\n");
 	printf("Tu so: ");
@@ -328,7 +301,7 @@ void xayDungChuongTrinhToanPhanSo()
 		if (mau1 == 0) printf("Mau so phai khac 0!\n");
 	} while (mau1 == 0);
 
-	// Nhập phân số thứ hai
+	// phan so 2
 	printf("Nhap phan so thu hai:\n");
 	printf("Tu so: ");
 	scanf_s("%d", &tu2);
@@ -338,7 +311,7 @@ void xayDungChuongTrinhToanPhanSo()
 		if (mau2 == 0) printf("Mau so phai khac 0!\n");
 	} while (mau2 == 0);
 
-	// Tính tổng
+	//tong
 	tu = tu1 * mau2 + tu2 * mau1;
 	mau = mau1 * mau2;
 	u = UCLN(tu, mau);
@@ -347,7 +320,7 @@ void xayDungChuongTrinhToanPhanSo()
 	if (mau < 0) { tu = -tu; mau = -mau; }
 	printf("Tong: %d/%d\n", tu, mau);
 
-	// Tính hiệu
+	// hieu
 	tu = tu1 * mau2 - tu2 * mau1;
 	mau = mau1 * mau2;
 	u = UCLN(tu, mau);
@@ -356,7 +329,7 @@ void xayDungChuongTrinhToanPhanSo()
 	if (mau < 0) { tu = -tu; mau = -mau; }
 	printf("Hieu: %d/%d\n", tu, mau);
 
-	// Tính tích
+	// tich
 	tu = tu1 * tu2;
 	mau = mau1 * mau2;
 	u = UCLN(tu, mau);
@@ -365,7 +338,7 @@ void xayDungChuongTrinhToanPhanSo()
 	if (mau < 0) { tu = -tu; mau = -mau; }
 	printf("Tich: %d/%d\n", tu, mau);
 
-	// Tính thương
+	// thuong
 	tu = tu1 * mau2;
 	mau = mau1 * tu2;
 	u = UCLN(tu, mau);
@@ -375,6 +348,35 @@ void xayDungChuongTrinhToanPhanSo()
 	printf("Thuong: %d/%d\n", tu, mau);
 }
 
+void sinhVien()
+{
+	system("cls");
+	printf("Sap Xep Thong Tin Sinh Vien\n");
+	//nguoi dung nhap
+	printf("Nhap ho ten sinh vien (Ko Dau): \n");
+	char hoTen[100];
+	getchar();
+	fgets(hoTen, sizeof(hoTen), stdin);
+	printf("Nhap diem sinh vien (1-10): \n");
+	
+	double diem;
+	if (scanf("%lf", &diem) != 1) return;
+	const char* hocLuc;
+	if (diem >= 9.0)
+		hocLuc = "Xuat sac";
+	else if (diem >= 8.0)
+		hocLuc = "Gioi";
+	else if (diem >= 6.5)
+		hocLuc = "Kha";
+	else if (diem >= 5.0)
+		hocLuc = "Trung binh";
+	else
+		hocLuc = "Yeu";
+	printf("\nThong tin sinh vien:\n");
+	printf("Ho ten: %s", hoTen);
+	printf("Diem: %.2lf\n", diem);
+	printf("Hoc luc: %s\n", hocLuc);
+}
 
 void lapChucNang(int chonChucNang)
 {
@@ -405,7 +407,7 @@ void lapChucNang(int chonChucNang)
 			chuongTrinhMuaXe();
 			break;
 		case 8:
-
+			sinhVien();
 			break;
 		case 9:
 			chuongTrinhTroChoi();
@@ -426,8 +428,6 @@ void lapChucNang(int chonChucNang)
 	}
 
 }
-
-	
 
 int main()
 {
