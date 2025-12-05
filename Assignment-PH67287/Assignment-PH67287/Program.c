@@ -6,6 +6,7 @@
 #define MAX 100
 #include <stdlib.h>
 #include <time.h>
+#include<string.h>
 
 void kiemTraSoNguyen()
 {
@@ -80,40 +81,40 @@ void tinhTienChoQuanKaraoke()
 	int batDau, ketThuc, gio;
 	float tien;
 
-
 	system("cls");
 	printf("Tinh tien quan karaoke\n");
-	printf("Nhap gio bat dau (12-23):\n ");
-	scanf_s("%d", &batDau);
 
-	printf("Nhap gio ket thuc (12-23):\n ");
-	scanf_s("%d", &ketThuc);
+	while (1) {
+		printf("Nhap gio bat dau (12-23): ");
+		scanf_s("%d", &batDau);
 
-	if (batDau < 12 || batDau > 23 || ketThuc < 12 || ketThuc > 23 || ketThuc <= batDau)
-	{
-		printf("Gio nhap khong hop le!\n");
+		printf("Nhap gio ket thuc (12-23): ");
+		scanf_s("%d", &ketThuc);
 
+		if (batDau < 12 || batDau > 23 || ketThuc < 12 || ketThuc > 23 || ketThuc <= batDau) 
+		{
+		printf("\nGio nhap khong hop le! Vui long nhap lai!\n\n");
+		}
+		else {
+			break;
+		}
 	}
 	gio = ketThuc - batDau;
-    tien = 0;
+	tien = 0;
 
 	if (gio <= 3) {
-		// 3 gio dau
 		tien = gio * 150000;
 	}
+	//gio sau giam 30%
 	else {
-		// 3 gio dau
 		tien = 3 * 150000;
-
-		// cac gio sau giam 30%
-		tien = tien + (gio - 3) * (150000 * 0.7);
+		tien += (gio - 3) * (150000 * 0.7);
 	}
-
-	// giam 10% tu 14 den 17h
+    // Giam 10% tu 14-17h
 	if (batDau >= 14 && batDau <= 17) {
-		tien = tien * 0.9;
+		tien *= 0.9;
 	}
-	printf("So gio su dung: %d\n", gio);
+	printf("\nSo gio su dung: %d\n", gio);
 	printf("Tong tien: %.0f VND\n", tien);
 }
 
@@ -164,7 +165,7 @@ void chucNangDoiTien()
 
 	system("cls");
 	printf("Nhap vao so tien can doi: ");
-	scanf("%d", &tien);
+	scanf_s("%d", &tien);
 
 	printf("Ket qua doi tien:\n");
 
@@ -182,28 +183,28 @@ void chucNangDoiTien()
 
 void  chucNangTinhLaiSuat()
 {
-	double tien_vay;
-	double lai_suat = 0.05;  // 5%/tháng
-	double goc_moi_thang, so_du, lai, tong;
+	double tienVay;
+	double laiSuat = 0.05;  // 5%/tháng
+	double gocMoiThang, soDu, lai, tong;
 	system("cls");
 	printf("Nhap so tien vay: ");
-	scanf("%lf", &tien_vay);
+	scanf("%lf", &tienVay);
 
-	goc_moi_thang = tien_vay / 12;
-	so_du = tien_vay;
+	gocMoiThang = tienVay / 12;
+	soDu = tienVay;
 	
 	printf("\n=== BANG TRA GOP 12 THANG ===\n");
 	printf("Thang\tGoc tra\t\tLai\t\tTong tra\tSo du con lai\n");
 
 	for (int i = 1; i <= 12; i++) 
 	{
-		lai = so_du * lai_suat;
-		tong = goc_moi_thang + lai;
+		lai = soDu * laiSuat;
+		tong = gocMoiThang + lai;
 
 		printf("%d\t%.0lf\t\t%.0lf\t\t%.0lf\t\t%.0lf\n",
-			i, goc_moi_thang, lai, tong, so_du - goc_moi_thang);
+			i, gocMoiThang, lai, tong, soDu - gocMoiThang);
 
-		so_du -= goc_moi_thang;
+		soDu -= gocMoiThang;
 	}
 }
 
@@ -214,22 +215,32 @@ void chuongTrinhMuaXe()
 	double tienVay, tienTraTruoc, tienTraHangThang;
 	int namVay = 24;
 	int soThang = namVay * 12;
-	double laiSuatNam = 0.072; // 7.2%
-	double laiSuatThang = laiSuatNam / 12; // 0.006/tháng
+	double laiSuatNam = 0.072;  // 7.2%
+	double laiSuatThang = laiSuatNam / 12;
 	int chon;
-
 
 	system("cls");
 	printf("Chuong trinh vay tien mua xe\n");
-	printf("Nhap vao so phan tram vay toi da (VD: 80): ");
+	while (1)
+	{
+	printf("Nhap vao so phan tram vay (toi da 80): ");
 	scanf_s("%lf", &phanTramVay);
 
+	if (phanTramVay < 0 || phanTramVay > 80) {
+	printf("Phan tram vay khong duoc vuot qua 80%%! Vui long nhap lai.\n\n");
+	}
+	else {
+		break;
+	}
+	}
 	tienVay = giaXe * (phanTramVay / 100.0);
 	tienTraTruoc = giaXe - tienVay;
 	tienTraHangThang = (tienVay * (1 + laiSuatThang * soThang)) / soThang;
+
 	printf("\nTien tra truoc: %.0lf VND\n", tienTraTruoc);
 	printf("Tien tra hang thang: %.0lf VND\n", tienTraHangThang);
-	printf("Tong tien phai tra sau %d nam: %.0lf VND\n", namVay, tienTraHangThang * soThang + tienTraTruoc);
+	printf("Tong tien phai tra sau %d nam: %.0lf VND\n",
+		namVay, tienTraHangThang * soThang + tienTraTruoc);
 }
 
 void chuongTrinhTroChoi()
@@ -244,14 +255,12 @@ void chuongTrinhTroChoi()
 	// nguoi dung nhap
 	printf("FPOLY-LOTT\n");
 	printf("Nhap vao 2 so tu 01 den 15:\n");
-	for (int i = 0; i < 2; i++) 
-	{
-		printf("So thu %d: ", i + 1);
-		scanf_s("%d", &soNguoiChon[i]);
-	if (soNguoiChon[i] < 1 || soNguoiChon[i] > 15) 
-	{
-		printf("So khong hop le! Vui long nhap tu 1 den 15.\n");
-		i--;
+	for (int i = 0; i < 2; i++) {
+	printf("So thu %d: ", i + 1);
+	scanf_s("%d", &soNguoiChon[i]);
+	if (soNguoiChon[i] < 1 || soNguoiChon[i] > 15) {
+	printf("So khong hop le! Vui long nhap tu 1 den 15.\n");
+	i--;
 	}
 	}
 	srand(time(NULL));
@@ -378,6 +387,73 @@ void sinhVien()
 	printf("Hoc luc: %s\n", hocLuc);
 }
 
+void sinhvien2()
+{
+	system("cls");
+	printf("Sap Xep Thong Tin Sinh Vien\n");
+
+	int n;
+	printf("Nhap so sinh vien: ");
+	scanf_s("%d", &n);
+	getchar();
+
+	char hoTen[100][100];
+	double diem[100];
+	const char* hocLuc[100];
+
+	for (int i = 0; i < n; i++) {
+		printf("\nNhap ho ten sinh vien %d (Ko Dau): \n", i + 1);
+		fgets(hoTen[i], sizeof(hoTen[i]), stdin);
+		hoTen[i][strcspn(hoTen[i], "\n")] = '\0';
+
+		printf("Nhap diem sinh vien (1-10): \n");
+		scanf_s("%lf", &diem[i]);
+		getchar();
+
+		if (diem[i] >= 9.0)
+			hocLuc[i] = "Xuat sac";
+		else if (diem[i] >= 8.0)
+			hocLuc[i] = "Gioi";
+		else if (diem[i] >= 6.5)
+			hocLuc[i] = "Kha";
+		else if (diem[i] >= 5.0)
+			hocLuc[i] = "Trung binh";
+		else
+			hocLuc[i] = "Yeu";
+	}
+
+	//sap xep
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (diem[i] < diem[j]) {
+				// swap diem
+				double tempD = diem[i];
+				diem[i] = diem[j];
+				diem[j] = tempD;
+
+				// swap ten
+				char tempTen[100];
+				strcpy(tempTen, hoTen[i]);
+				strcpy(hoTen[i], hoTen[j]);
+				strcpy(hoTen[j], tempTen);
+
+				// swap hoc luc
+				const char* tempHL = hocLuc[i];
+				hocLuc[i] = hocLuc[j];
+				hocLuc[j] = tempHL;
+			}
+		}
+	}
+	printf("\n====== Danh sach sinh vien sap xep giam dan theo diem ======\n");
+
+	for (int i = 0; i < n; i++) {
+	printf("\nThong tin sinh vien %d:\n", i + 1);
+	printf("Ho ten: %s\n", hoTen[i]);
+	printf("Diem: %.2lf\n", diem[i]);
+	printf("Hoc luc: %s\n", hocLuc[i]);
+	}
+}
+
 void lapChucNang(int chonChucNang)
 {
 	int tiepTuc = 1;
@@ -407,7 +483,7 @@ void lapChucNang(int chonChucNang)
 			chuongTrinhMuaXe();
 			break;
 		case 8:
-			sinhVien();
+			sinhvien2();
 			break;
 		case 9:
 			chuongTrinhTroChoi();
