@@ -2,6 +2,7 @@
 // Chuong trinh phan mem Bat dau thuc thi & Ket thuc o day.
 
 #include <stdio.h>
+#include<string.h>
 
 void kiemTraSoNguyen()
 {
@@ -154,10 +155,12 @@ int main()
 		printf("\n");
 		printf("3. Mang 2 Chieu");
 		printf("\n");
+		printf("4. Demo String");
+		printf("\n");
 		printf("0. Thoat");
 		printf("\n");
 		printf("Hay chon chuc nang [0-3]: ");
-		scanf("%d", &chonChucNang);
+		scanf_s("%d", &chonChucNang);
 		lapChucNang(chonChucNang);
 	} while (chonChucNang != 0);
 }

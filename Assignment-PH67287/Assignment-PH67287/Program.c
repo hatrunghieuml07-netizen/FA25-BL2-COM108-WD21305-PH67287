@@ -357,37 +357,7 @@ void xayDungChuongTrinhToanPhanSo()
 	printf("Thuong: %d/%d\n", tu, mau);
 }
 
-void sinhVien()
-{
-	system("cls");
-	printf("Sap Xep Thong Tin Sinh Vien\n");
-	//nguoi dung nhap
-	printf("Nhap ho ten sinh vien (Ko Dau): \n");
-	char hoTen[100];
-	getchar();
-	fgets(hoTen, sizeof(hoTen), stdin);
-	printf("Nhap diem sinh vien (1-10): \n");
-	
-	double diem;
-	if (scanf("%lf", &diem) != 1) return;
-	const char* hocLuc;
-	if (diem >= 9.0)
-		hocLuc = "Xuat sac";
-	else if (diem >= 8.0)
-		hocLuc = "Gioi";
-	else if (diem >= 6.5)
-		hocLuc = "Kha";
-	else if (diem >= 5.0)
-		hocLuc = "Trung binh";
-	else
-		hocLuc = "Yeu";
-	printf("\nThong tin sinh vien:\n");
-	printf("Ho ten: %s", hoTen);
-	printf("Diem: %.2lf\n", diem);
-	printf("Hoc luc: %s\n", hocLuc);
-}
-
-void sinhvien2()
+void sapXepSinhVien()
 {
 	system("cls");
 	printf("Sap Xep Thong Tin Sinh Vien\n");
@@ -426,18 +396,18 @@ void sinhvien2()
 	for (int i = 0; i < n - 1; i++) {
 		for (int j = i + 1; j < n; j++) {
 			if (diem[i] < diem[j]) {
-				// swap diem
+				//diem
 				double tempD = diem[i];
 				diem[i] = diem[j];
 				diem[j] = tempD;
 
-				// swap ten
+				//ten
 				char tempTen[100];
 				strcpy(tempTen, hoTen[i]);
 				strcpy(hoTen[i], hoTen[j]);
 				strcpy(hoTen[j], tempTen);
 
-				// swap hoc luc
+				//hoc luc
 				const char* tempHL = hocLuc[i];
 				hocLuc[i] = hocLuc[j];
 				hocLuc[j] = tempHL;
@@ -483,7 +453,7 @@ void lapChucNang(int chonChucNang)
 			chuongTrinhMuaXe();
 			break;
 		case 8:
-			sinhvien2();
+			sapXepSinhVien();
 			break;
 		case 9:
 			chuongTrinhTroChoi();
@@ -495,7 +465,7 @@ void lapChucNang(int chonChucNang)
 			printf("Thoat\n");
 			break;
 		default:
-			printf("Chon sai. Chuc nang hop le [0-10]");
+			printf("Chon sai. Chuc nang hop le [0-10] \n");
 			break;
 		}
 		printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
